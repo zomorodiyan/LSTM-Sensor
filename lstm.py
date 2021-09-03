@@ -19,6 +19,9 @@ aTrue = data['aTrue']; bTrue = data['bTrue']
 
 # Scale Data
 data = np.concatenate((aTrue, bTrue), axis=1) # axes 0:snapshots 1:states
+percent = 50
+data = data[:int(percent/100*data.shape[0]),:]
+print('data.shape[0]=',data.shape[0])
 scaler = MinMaxScaler(feature_range=(-1,1))
 scaled_data = scaler.fit_transform(data)
 filename = './results/scaler_' + str(nx) + 'x' + str(ny) + '.npz'
